@@ -1,69 +1,341 @@
-import Image from "next/image";
+﻿import Link from "next/link";
+import { HeroMockup } from "@/components/HeroMockup";
+import { ProductMockup } from "@/components/ProductMockup";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Sparkles,
+  BookOpen,
+  BarChart3,
+  Cpu,
+  Target,
+  Users,
+  Compass,
+  Layers,
+  Award,
+} from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <div className="flex flex-col min-h-screen">
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-radial-[at_top] from-indigo-50/70 via-white to-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Hero Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/60 px-4 py-1.5 text-xs font-semibold text-indigo-700 shadow-2xs">
+              <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+              <span>Technology + Education + Product Innovation</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+              Building Better Digital Learning Experiences
+            </h1>
+
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+              HodoLabs builds modern technology products that make learning, assessment and digital education simpler, smarter and more accessible.
+            </p>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://learn.hodoolabs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3.5 text-base font-semibold text-white shadow-md shadow-indigo-600/20 transition-all hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-600/25 active:scale-98"
+              >
+                <span>Explore HodoLabs Learn</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href="#product"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs"
+              >
+                <span>Learn More</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Hero Visual Mockup */}
+          <div className="mt-14 md:mt-18">
+            <HeroMockup />
+          </div>
+        </div>
+      </section>
+
+      {/* 2. PRODUCT SECTION */}
+      <section id="product" className="py-20 md:py-28 bg-slate-50/60 border-y border-slate-100 scroll-mt-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+              Our Product
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+              HodoLabs Learn
+            </h2>
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+              HodoLabs Learn is our digital learning and assessment platform designed to help students learn, practice and assess their knowledge through structured curriculum-based experiences.
+            </p>
+          </div>
+
+          {/* Product Preview Mockup */}
+          <ProductMockup />
+
+          {/* 6 Feature Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+            {[
+              {
+                icon: BookOpen,
+                title: "Curriculum-Based Learning",
+                description:
+                  "Organized around recognized national and international curriculum frameworks, ensuring students practice what matters.",
+              },
+              {
+                icon: Award,
+                title: "Online Assessments",
+                description:
+                  "Comprehensive assessment engine supporting timed tests, diagnostic reviews, and objective evaluation benchmarks.",
+              },
+              {
+                icon: Sparkles,
+                title: "Interactive Quizzes",
+                description:
+                  "Engaging questions with instant feedback and step-by-step reasoning that encourage active retention.",
+              },
+              {
+                icon: Compass,
+                title: "Structured Learning Paths",
+                description:
+                  "Sequenced progression guiding students from foundational concepts to advanced problem-solving.",
+              },
+              {
+                icon: Users,
+                title: "Student-Friendly Experience",
+                description:
+                  "Modern, clutter-free user interface built specifically for focus, clarity, and frictionless navigation.",
+              },
+              {
+                icon: BarChart3,
+                title: "Progress & Performance",
+                description:
+                  "Clear visibility into subject accuracy, topic mastery, and actionable diagnostic recommendations.",
+              },
+            ].map((feature, idx) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-2xs hover:shadow-md transition-shadow"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 mb-4">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Product CTA */}
+          <div className="text-center pt-2">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="https://learn.hodoolabs.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-slate-800 transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <span>Explore HodoLabs Learn &rarr;</span>
+              <ArrowUpRight className="h-4 w-4 text-slate-400" />
+            </a>
+            <p className="text-xs text-slate-500 mt-2">
+              Opens the live HodoLabs Learn platform at learn.hodoolabs.com
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. HOW IT WORKS */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+              Simple &amp; Intuitive
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+              How It Works
+            </h2>
+            <p className="text-slate-600 text-base">
+              A structured three-step cycle designed to build mastery through practice and assessment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Choose",
+                description:
+                  "Choose a curriculum, grade, subject or learning area tailored to your educational goals.",
+                icon: Layers,
+              },
+              {
+                step: "02",
+                title: "Learn & Practice",
+                description:
+                  "Access structured learning content and practice through assessments and interactive quizzes.",
+                icon: BookOpen,
+              },
+              {
+                step: "03",
+                title: "Assess & Improve",
+                description:
+                  "Test knowledge, understand performance and continue improving with clear diagnostics.",
+                icon: Target,
+              },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="relative rounded-2xl border border-slate-200/80 bg-white p-7 shadow-xs hover:border-indigo-200 transition-all group"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-3xl font-black text-indigo-600/90 font-mono">
+                      {item.step}
+                    </span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-700 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. WHY HODOLABS */}
+      <section className="py-20 md:py-28 bg-slate-50/60 border-t border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+              Core Principles
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+              Technology Designed Around Learning
+            </h2>
+            <p className="text-slate-600 text-base">
+              Built from first principles to prioritize educational efficacy over superficial gamification.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Users,
+                title: "Student First",
+                description:
+                  "We focus on creating simple and engaging digital experiences for learners.",
+              },
+              {
+                icon: BookOpen,
+                title: "Structured Learning",
+                description:
+                  "Learning experiences are organized around clear curriculum and educational structures.",
+              },
+              {
+                icon: Target,
+                title: "Smart Assessment",
+                description:
+                  "Assessment should help learners understand what they know and where they can improve.",
+              },
+              {
+                icon: Cpu,
+                title: "Product Innovation",
+                description:
+                  "We continuously build and improve technology that solves real learning problems.",
+              },
+            ].map((card, idx) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-xl border border-slate-200 bg-white p-6 shadow-2xs hover:shadow-sm transition-all"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 mb-4">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. ABOUT HODOLABS SECTION */}
+      <section className="py-16 md:py-24 bg-white border-t border-slate-100">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-5">
+          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+            Company
+          </span>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+            About HodoLabs
+          </h2>
+          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            HodoLabs is a technology-focused product company building digital experiences for the next generation of learners.
           </p>
+          <div className="pt-2">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1.5 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+            >
+              <span>Explore our story</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 6. CALL TO ACTION BANNER */}
+      <section className="py-16 md:py-20 bg-slate-900 text-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Ready to explore better learning?
+          </h2>
+          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            Discover HodoLabs Learn and experience our digital learning platform.
+          </p>
+          <div className="pt-2">
+            <a
+              href="https://learn.hodoolabs.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-600/30 transition-all hover:bg-indigo-500 hover:scale-102"
+            >
+              <span>Explore HodoLabs Learn</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
