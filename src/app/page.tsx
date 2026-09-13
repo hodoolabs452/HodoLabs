@@ -19,20 +19,20 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* 1. HERO SECTION */}
-      <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-radial-[at_top] from-indigo-50/70 via-white to-white">
+      <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-radial-[at_top] from-indigo-50/70 dark:from-indigo-950/40 via-white dark:via-[#090d16] to-white dark:to-[#090d16] transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Hero Header */}
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/60 px-4 py-1.5 text-xs font-semibold text-indigo-700 shadow-2xs">
-              <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200/80 dark:border-indigo-800/80 bg-indigo-50/60 dark:bg-indigo-950/60 px-4 py-1.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 shadow-2xs">
+              <Sparkles className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
               <span>Technology + Education + Product Innovation</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 leading-[1.12]">
               Building Better Digital Learning Experiences
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
               HodoLabs builds modern technology products that make learning, assessment and digital education simpler, smarter and more accessible.
             </p>
 
@@ -49,7 +49,7 @@ export default function HomePage() {
 
               <a
                 href="#product"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-2xs"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111927] px-6 py-3.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors shadow-2xs"
               >
                 <span>Learn More</span>
                 <ArrowRight className="h-4 w-4" />
@@ -65,16 +65,16 @@ export default function HomePage() {
       </section>
 
       {/* 2. PRODUCT SECTION */}
-      <section id="product" className="py-20 md:py-28 bg-slate-50/60 border-y border-slate-100 scroll-mt-14">
+      <section id="product" className="py-20 md:py-28 bg-slate-50/60 dark:bg-[#070b13] border-y border-slate-100 dark:border-slate-800 scroll-mt-14 transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-md">
               Our Product
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               HodoLabs Learn
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               HodoLabs Learn is our digital learning and assessment platform designed to help students learn, practice and assess their knowledge through structured curriculum-based experiences.
             </p>
           </div>
@@ -138,15 +138,15 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-2xs hover:shadow-md transition-shadow"
+                  className="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#0c121e] p-6 shadow-2xs hover:shadow-md transition-all"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 mb-4">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -160,12 +160,12 @@ export default function HomePage() {
               href="https://learn.hodoolabs.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 dark:bg-indigo-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-slate-800 dark:hover:bg-indigo-500 transition-colors"
             >
               <span>Explore HodoLabs Learn &rarr;</span>
-              <ArrowUpRight className="h-4 w-4 text-slate-400" />
+              <ArrowUpRight className="h-4 w-4 text-slate-400 dark:text-slate-200" />
             </a>
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
               Opens the live HodoLabs Learn platform at learn.hodoolabs.com
             </p>
           </div>
@@ -173,16 +173,16 @@ export default function HomePage() {
       </section>
 
       {/* 3. HOW IT WORKS */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-white dark:bg-[#090d16] transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-md">
               Simple &amp; Intuitive
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               How It Works
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 dark:text-slate-400 text-base">
               A structured three-step cycle designed to build mastery through practice and assessment.
             </p>
           </div>
@@ -215,20 +215,20 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="relative rounded-2xl border border-slate-200/80 bg-white p-7 shadow-xs hover:border-indigo-200 transition-all group"
+                  className="relative rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#0c121e] p-7 shadow-xs hover:border-indigo-200 dark:hover:border-indigo-800 transition-all group"
                 >
                   <div className="flex items-center justify-between mb-5">
-                    <span className="text-3xl font-black text-indigo-600/90 font-mono">
+                    <span className="text-3xl font-black text-indigo-600/90 dark:text-indigo-400 font-mono">
                       {item.step}
                     </span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-700 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/60 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                       <Icon className="h-5 w-5" />
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -239,16 +239,16 @@ export default function HomePage() {
       </section>
 
       {/* 4. WHY HODOLABS */}
-      <section className="py-20 md:py-28 bg-slate-50/60 border-t border-slate-100">
+      <section className="py-20 md:py-28 bg-slate-50/60 dark:bg-[#070b13] border-t border-slate-100 dark:border-slate-800 transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-14">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-md">
               Core Principles
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Technology Designed Around Learning
             </h2>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 dark:text-slate-400 text-base">
               Built from first principles to prioritize educational efficacy over superficial gamification.
             </p>
           </div>
@@ -284,15 +284,15 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="rounded-xl border border-slate-200 bg-white p-6 shadow-2xs hover:shadow-sm transition-all"
+                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c121e] p-6 shadow-2xs hover:shadow-sm transition-all"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 mb-4">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 mb-2">
                     {card.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {card.description}
                   </p>
                 </div>
@@ -303,21 +303,21 @@ export default function HomePage() {
       </section>
 
       {/* 5. ABOUT HODOLABS SECTION */}
-      <section className="py-16 md:py-24 bg-white border-t border-slate-100">
+      <section className="py-16 md:py-24 bg-white dark:bg-[#090d16] border-t border-slate-100 dark:border-slate-800 transition-colors">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">
+          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-md">
             Company
           </span>
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
             About HodoLabs
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             HodoLabs is a technology-focused product company building digital experiences for the next generation of learners.
           </p>
           <div className="pt-2">
             <Link
               href="/about"
-              className="inline-flex items-center gap-1.5 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+              className="inline-flex items-center gap-1.5 font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
             >
               <span>Explore our story</span>
               <ArrowRight className="h-4 w-4" />
@@ -327,12 +327,12 @@ export default function HomePage() {
       </section>
 
       {/* 6. CALL TO ACTION BANNER */}
-      <section className="py-16 md:py-20 bg-slate-900 text-white">
+      <section className="py-16 md:py-20 bg-slate-900 dark:bg-[#0c121e] border-t border-slate-800 text-white transition-colors">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Ready to explore better learning?
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-slate-300 dark:text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Discover HodoLabs Learn and experience our digital learning platform.
           </p>
           <div className="pt-2">
