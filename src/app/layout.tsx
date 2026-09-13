@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hodoolabs.com"),
   title: {
-    default: "HodoLabs — Building Better Digital Learning Experiences",
+    default: "HodoLabs - Technology, Education & Digital Solutions",
     template: "%s | HodoLabs",
   },
   description:
-    "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our digital learning and assessment platform.",
+    "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our curriculum-aligned digital learning and assessment platform.",
   keywords: [
     "HodoLabs",
     "HodoLabs Learn",
@@ -33,6 +33,17 @@ export const metadata: Metadata = {
     "Singapore Math",
     "Common Core",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   authors: [{ name: "HodoLabs" }],
   creator: "HodoLabs",
   publisher: "HodoLabs",
@@ -44,15 +55,26 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://hodoolabs.com",
     siteName: "HodoLabs",
-    title: "HodoLabs — Building Better Digital Learning Experiences",
+    title: "HodoLabs - Technology, Education & Digital Solutions",
     description:
-      "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our digital learning and assessment platform.",
+      "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our curriculum-aligned digital learning and assessment platform.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/kyvmgbzw/image/upload/v1789295065/hodoo_labs_Logo.png",
+        width: 1536,
+        height: 1024,
+        alt: "HodoLabs - Technology, Education & Digital Solutions",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HodoLabs — Building Better Digital Learning Experiences",
+    title: "HodoLabs - Technology, Education & Digital Solutions",
     description:
-      "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our digital learning and assessment platform.",
+      "HodoLabs builds modern digital learning and assessment products. Explore HodoLabs Learn, our curriculum-aligned digital learning and assessment platform.",
+    images: [
+      "https://res.cloudinary.com/kyvmgbzw/image/upload/v1789295065/hodoo_labs_Logo.png",
+    ],
   },
 };
 

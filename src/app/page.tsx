@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { HeroMockup } from "@/components/HeroMockup";
 import { ProductMockup } from "@/components/ProductMockup";
 import {
@@ -82,14 +82,14 @@ export default function HomePage() {
           {/* Product Preview Mockup */}
           <ProductMockup />
 
-          {/* 6 Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+          {/* Feature Cards Covering All 8 Product Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
             {[
               {
                 icon: BookOpen,
                 title: "Curriculum-Based Learning",
                 description:
-                  "Organized around recognized national and international curriculum frameworks, ensuring students practice what matters.",
+                  "Aligned to official national and global curricula, organizing learning content by syllabus and grade level.",
               },
               {
                 icon: Award,
@@ -101,25 +101,37 @@ export default function HomePage() {
                 icon: Sparkles,
                 title: "Interactive Quizzes",
                 description:
-                  "Engaging questions with instant feedback and step-by-step reasoning that encourage active retention.",
+                  "Engaging questions across 11 question types designed to build conceptual clarity and test retention.",
               },
               {
                 icon: Compass,
-                title: "Structured Learning Paths",
+                title: "Chapter & Topic Practice",
                 description:
-                  "Sequenced progression guiding students from foundational concepts to advanced problem-solving.",
+                  "Targeted practice drills allowing students to master individual chapters and topics before moving forward.",
+              },
+              {
+                icon: Cpu,
+                title: "AI-Powered Explanations",
+                description:
+                  "Instant step-by-step reasoning, solution hints, and intelligent breakdowns for every practice problem.",
+              },
+              {
+                icon: Target,
+                title: "Points & Gamification",
+                description:
+                  "Earn XP, maintain daily study streaks, climb leaderboards, and celebrate measurable learning milestones.",
               },
               {
                 icon: Users,
-                title: "Student-Friendly Experience",
+                title: "Student Experience",
                 description:
-                  "Modern, clutter-free user interface built specifically for focus, clarity, and frictionless navigation.",
+                  "A distraction-free, accessible, and fast web application designed for focused, enjoyable learning.",
               },
               {
                 icon: BarChart3,
-                title: "Progress & Performance",
+                title: "Progress & Analytics",
                 description:
-                  "Clear visibility into subject accuracy, topic mastery, and actionable diagnostic recommendations.",
+                  "Real-time diagnostic analytics tracking subject accuracy, topic mastery, and revision recommendations.",
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
