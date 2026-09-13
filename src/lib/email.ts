@@ -1,3 +1,5 @@
+import nodemailer from "nodemailer";
+
 export interface ContactEmailPayload {
   name: string;
   email: string;
@@ -19,7 +21,6 @@ const SENDER_EMAIL = process.env.EMAIL_FROM || "HodoLabs <onboarding@resend.dev>
 export async function sendContactEmail(payload: ContactEmailPayload): Promise<EmailResult> {
   const { name, email, subject = "General Inquiry", message } = payload;
   const timestamp = new Date().toISOString();
-
   const emailSubject = `[HodoLabs Website Inquiry] ${subject}`;
 
   const textBody = `
@@ -93,9 +94,10 @@ Recipient: ${RECIPIENT_EMAIL}
 </html>
 `.trim();
 
-  // 1. Resend Provider (Default Recommended Provider for Next.js)
+  // 1. Resend Provider (Recommended for Next.js on Vercel)
   const resendKey = process.env.RESEND_API_KEY || (process.env.EMAIL_API_KEY?.startsWith("re_") ? process.env.EMAIL_API_KEY : undefined);
   if (resendKey) {
+    console.log(`[Email:Resend] Provider active. Dispatching inquiry to ${RECIPIENT_EMAIL}...`);
     try {
       const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -115,37 +117,87 @@ Recipient: ${RECIPIENT_EMAIL}
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error("[Email:Resend] Delivery failed:", errorData);
+        console.error(`[Email:Resend] Provider returned HTTP ${response.status}:`, errorData?.message || "Unknown error");
         return {
           success: false,
           delivered: false,
           provider: "resend",
-          error: errorData.message || `Resend responded with status ${response.status}`,
+          error: errorData?.message || `Resend delivery failed with status ${response.status}`,
         };
       }
 
       const data = await response.json();
+      console.log(`[Email:Resend] Delivered successfully. Message ID: ${data?.id}`);
       return {
         success: true,
         delivered: true,
         provider: "resend",
-        messageId: data.id,
+        messageId: data?.id,
       };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Failed to reach Resend API";
-      console.error("[Email:Resend] Network error:", message);
+      const messageText = err instanceof Error ? err.message : "Failed to connect to Resend API";
+      console.error("[Email:Resend] Network exception:", messageText);
       return {
         success: false,
         delivered: false,
         provider: "resend",
-        error: message,
+        error: messageText,
       };
     }
   }
 
-  // 2. SendGrid Provider
+  // 2. SMTP Provider (Google Workspace, Zoho, Microsoft 365, Amazon SES, Custom SMTP)
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASSWORD || process.env.SMTP_PASS;
+  if (smtpHost && smtpUser && smtpPass) {
+    const port = parseInt(process.env.SMTP_PORT || "587", 10);
+    const secure = process.env.SMTP_SECURE === "true" || port === 465;
+    console.log(`[Email:SMTP] Provider active. Dispatching via ${smtpHost}:${port} to ${RECIPIENT_EMAIL}...`);
+
+    try {
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port,
+        secure,
+        auth: {
+          user: smtpUser,
+          pass: smtpPass,
+        },
+      });
+
+      const info = await transporter.sendMail({
+        from: process.env.EMAIL_FROM || `"HodoLabs" <${smtpUser}>`,
+        to: RECIPIENT_EMAIL,
+        replyTo: email,
+        subject: emailSubject,
+        text: textBody,
+        html: htmlBody,
+      });
+
+      console.log(`[Email:SMTP] Delivered successfully. Message ID: ${info.messageId}`);
+      return {
+        success: true,
+        delivered: true,
+        provider: "smtp",
+        messageId: info.messageId,
+      };
+    } catch (err: unknown) {
+      const messageText = err instanceof Error ? err.message : "SMTP delivery failed";
+      console.error("[Email:SMTP] Delivery exception:", messageText);
+      return {
+        success: false,
+        delivered: false,
+        provider: "smtp",
+        error: messageText,
+      };
+    }
+  }
+
+  // 3. SendGrid Provider
   const sendgridKey = process.env.SENDGRID_API_KEY;
   if (sendgridKey) {
+    console.log(`[Email:SendGrid] Provider active. Dispatching to ${RECIPIENT_EMAIL}...`);
     try {
       const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
         method: "POST",
@@ -167,19 +219,23 @@ Recipient: ${RECIPIENT_EMAIL}
 
       if (!response.ok) {
         const errText = await response.text().catch(() => "");
-        return { success: false, delivered: false, provider: "sendgrid", error: errText };
+        console.error(`[Email:SendGrid] Provider returned HTTP ${response.status}:`, errText);
+        return { success: false, delivered: false, provider: "sendgrid", error: errText || `SendGrid returned status ${response.status}` };
       }
 
+      console.log("[Email:SendGrid] Delivered successfully.");
       return { success: true, delivered: true, provider: "sendgrid" };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "SendGrid network error";
-      return { success: false, delivered: false, provider: "sendgrid", error: message };
+      const messageText = err instanceof Error ? err.message : "SendGrid network error";
+      console.error("[Email:SendGrid] Network exception:", messageText);
+      return { success: false, delivered: false, provider: "sendgrid", error: messageText };
     }
   }
 
-  // 3. Postmark Provider
+  // 4. Postmark Provider
   const postmarkToken = process.env.POSTMARK_SERVER_TOKEN;
   if (postmarkToken) {
+    console.log(`[Email:Postmark] Provider active. Dispatching to ${RECIPIENT_EMAIL}...`);
     try {
       const response = await fetch("https://api.postmarkapp.com/email", {
         method: "POST",
@@ -199,29 +255,29 @@ Recipient: ${RECIPIENT_EMAIL}
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        return { success: false, delivered: false, provider: "postmark", error: errorData.Message };
+        console.error(`[Email:Postmark] Provider returned HTTP ${response.status}:`, errorData?.Message || "Unknown error");
+        return { success: false, delivered: false, provider: "postmark", error: errorData?.Message || `Postmark status ${response.status}` };
       }
 
+      console.log("[Email:Postmark] Delivered successfully.");
       return { success: true, delivered: true, provider: "postmark" };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Postmark network error";
-      return { success: false, delivered: false, provider: "postmark", error: message };
+      const messageText = err instanceof Error ? err.message : "Postmark network error";
+      console.error("[Email:Postmark] Network exception:", messageText);
+      return { success: false, delivered: false, provider: "postmark", error: messageText };
     }
   }
 
-  // 4. Development Fallback
-  console.log(`\n======================================================`);
-  console.log(`[HODOOLABS WEBSITE CONTACT SUBMISSION TO: ${RECIPIENT_EMAIL}]`);
-  console.log(`From: ${name} <${email}>`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Message:\n${message}`);
-  console.log(`Notice: To deliver live emails to ${RECIPIENT_EMAIL}, set RESEND_API_KEY in your Vercel or environment variables.`);
-  console.log(`======================================================\n`);
+  // 5. No active email provider configured in environment variables
+  console.error(`[Email:Config] FAILURE: No email delivery credentials found in environment.`);
+  console.error(`[Email:Config] Checked variables: RESEND_API_KEY (${Boolean(resendKey)}), SMTP_HOST (${Boolean(smtpHost)}), SENDGRID_API_KEY (${Boolean(sendgridKey)}), POSTMARK_SERVER_TOKEN (${Boolean(postmarkToken)}).`);
+  console.error(`[Email:Config] Message from ${name} <${email}> intended for ${RECIPIENT_EMAIL} could not be delivered.`);
 
   return {
-    success: true,
+    success: false,
     delivered: false,
-    provider: "local-log",
+    provider: "none",
+    error: "Email delivery service is currently not configured on the server. Please contact hello@hodoolabs.com directly.",
   };
 }
 
